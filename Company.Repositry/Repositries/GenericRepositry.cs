@@ -19,13 +19,14 @@ namespace Company.Repositry.Repositries
         }
 
         public void Add(T entity)
-        { 
-            _context.Set<T>().Add(entity); 
-            _context.SaveChanges();
-        }
+        => _context.Set<T>().Add(entity); 
+            
+     
 
         public void Delete(T entity)
-         => _context.Set<T>().Remove(entity);
+        => _context.Set<T>().Remove(entity);
+            
+      
 
         public IEnumerable<T> GetAll()        
            => _context.Set<T>().ToList();
@@ -33,9 +34,11 @@ namespace Company.Repositry.Repositries
         
 
         public T GetBYId(int id)
-         => _context.Set<T>().Find(id);
+        => _context.Set<T>().Find(id);
 
         public void Update(T entity)
-         => _context.Set<T>().Update(entity);
+            =>_context.Set<T>().Update(entity);
+           
+        
     }
 }

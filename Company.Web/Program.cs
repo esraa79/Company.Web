@@ -1,6 +1,8 @@
 using Company.Data.Context;
 using Company.Repositry.Interfaces;
 using Company.Repositry.Repositries;
+using Company.Service.Interfaces;
+using Company.Service.Services.Department;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 
@@ -19,7 +21,10 @@ namespace Company.Web
                 Options.UseSqlServer(builder.Configuration.GetConnectionString("DefualtConnection"));
 
             });
-            builder.Services.AddScoped<IDepartmentRepositry, DepartmentRepositry>();
+            builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
+
+            //builder.Services.AddScoped<IDepartmentRepositry, DepartmentRepositry>();
+            builder.Services.AddScoped<IDepartmentService, DepartmentService>();
 
 
             var app = builder.Build();
