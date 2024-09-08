@@ -17,8 +17,8 @@ namespace Company.Data.Models
         public string Phone { get; set; }
         public DateTime HiringDate { get; set; }
 
-        public string ImageUrl { get; set; }
-        public Department Department { get; set; }
+        public string? ImageUrl { get; set; }
+        public Department? Department { get; set; }
 
         public int? DepartmentId { get; set; }
 

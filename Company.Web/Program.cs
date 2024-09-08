@@ -1,10 +1,15 @@
 using Company.Data.Context;
 using Company.Repositry.Interfaces;
 using Company.Repositry.Repositries;
-using Company.Service.Interfaces;
-using Company.Service.Services.Department;
+using Company.Service.Interfaces.Department;
+using Company.Service.Interfaces.Employee;
+
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
+using Company.Service.Services;
+using Company.Service.Mapping;
+using Company.Service.Interfaces.Employee.DTO;
+using Company.Service.Interfaces.Department.DTO;
 
 namespace Company.Web
 {
@@ -25,6 +30,13 @@ namespace Company.Web
 
             //builder.Services.AddScoped<IDepartmentRepositry, DepartmentRepositry>();
             builder.Services.AddScoped<IDepartmentService, DepartmentService>();
+            builder.Services.AddScoped<IEmployeeService, EmployeeService>();
+            builder.Services.AddScoped<EmployeeDto>();
+            builder.Services.AddScoped<DepartmentDto>();
+            builder.Services.AddAutoMapper(x => x.AddProfile(new EmployeeProfile()));
+            builder.Services.AddAutoMapper(x => x.AddProfile(new DepartmetProfile()));
+            
+
 
 
             var app = builder.Build();

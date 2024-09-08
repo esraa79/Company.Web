@@ -10,7 +10,7 @@ namespace Company.Repositry.Interfaces
 {
     public interface IEmployeeRepositry:IGenericRepositry<Employee>
     {
-        Employee GetEmpoyeeByName(string empyeeName);
+        IEnumerable<Employee> GetEmpoyeeByName(string empyeeName);
 
         IEnumerable<Employee> GetEmpoyeeByAddress(string Address);
         

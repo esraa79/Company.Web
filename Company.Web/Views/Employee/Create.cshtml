@@ -1,0 +1,56 @@
+﻿@model EmployeeDto
+@{
+    var departments = new SelectList(ViewBag.DepartmentDto, nameof(DepartmentDto.Id), nameof(DepartmentDto.Name));
+}
+<h1>Create New Employee</h1>
+<br />
+<br />
+
+<form asp-action="Create" enctype="multipart/form-data">
+    <div class="form-group">
+        <label class="col-form-label" asp-for="Name">Name</label>
+        <input type="text" asp-for="Name" class="form-control" />
+        @* <span asp-validation-for="Code" class="text-danger"></span> *@
+
+        <label class="col-form-label" asp-for="Age">Age</label>
+        <input type="number" asp-for="Age" class="form-control" />
+
+        <label class="col-form-label" asp-for="Address">Address</label>
+        <input type="text" asp-for="Address" class="form-control" />
+
+        <label class="col-form-label" asp-for="Salary">Salary</label>
+        <input type="number" asp-for="Salary" class="form-control" />
+
+        <label class="col-form-label" asp-for="Email">Email</label>
+        <input type="email" asp-for="Email" class="form-control" />
+
+        <label class="col-form-label" asp-for="Phone">Phone</label>
+        <input type="text" asp-for="Phone" class="form-control" />
+
+
+        <label class="col-form-label" asp-for="HiringDate">Hiring Date</label>
+        <input type="date" asp-for="HiringDate" class="form-control" />
+
+        <label class="col-form-label" asp-for="DepartmentId">Department</label>
+        <select class="form-control" asp-items="@departments" asp-for="DepartmentId">
+            <option vaule="@null">--Select Department</option>
+        </select>
+
+        <div class="form-group">
+            <label class="col-form-label" asp-for="Image">Image</label>
+            <input type="file" class="form-control-file" asp-for="Image" />
+
+        </div>
+        
+
+
+    </div>
+    <div>
+        <input type="submit" value="Create" class="btn btn-primary" />
+        <a asp-action="Index" class="btn btn-light">Back to List</a>
+
+
+    </div>
+
+
+</form>

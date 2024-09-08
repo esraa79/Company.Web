@@ -23,9 +23,7 @@ namespace Company.Repositry.Repositries
             throw new NotImplementedException();
         }
 
-        public Employee GetEmpoyeeByName(string empyeeName)
-        {
-            throw new NotImplementedException();
-        }
+        public IEnumerable<Employee> GetEmpoyeeByName(string empyeeName)
+        =>_context.Employees.Where(x=>x.Name.Trim().ToLower().Contains(empyeeName.Trim().ToLower())).ToList();
     }
 }

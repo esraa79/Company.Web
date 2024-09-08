@@ -1,8 +1,9 @@
 ﻿using Company.Data.Models;
 using Company.Repositry.Interfaces;
 using Company.Repositry.Repositries;
-using Company.Service.Interfaces;
-using Company.Service.Services.Department;
+using Company.Service.Interfaces.Department;
+using Company.Service.Interfaces.Department.DTO;
+using Company.Service.Services;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Company.Web.Controllers
@@ -10,10 +11,12 @@ namespace Company.Web.Controllers
     public class DepartmentController : Controller
     {
         private readonly IDepartmentService _departmentService;
+        private readonly DepartmentDto _departmentDto;
 
-        public DepartmentController(IDepartmentService departmentService)
+        public DepartmentController(IDepartmentService departmentService,DepartmentDto departmentDto)
         {
             this._departmentService = departmentService;
+            _departmentDto = departmentDto;
         }
 
        
@@ -31,7 +34,7 @@ namespace Company.Web.Controllers
         }
 
         [HttpPost]
-        public IActionResult Create(Department department)
+        public IActionResult Create(DepartmentDto department)
         {
             try
             {
@@ -67,14 +70,14 @@ namespace Company.Web.Controllers
             return Details(Id,"Update");
         }
         [HttpPost]
-        public IActionResult Update(int? Id,Department department)
-        {
-            if(department.id != Id.Value)
-                return RedirectToAction("NotFoundPage", null, "Home");
+        //public IActionResult Update(int? Id,Department epartment)
+        //{
+        //    if(department.id != Id.Value)
+        //        return RedirectToAction("NotFoundPage", null, "Home");
 
-            _departmentService.Update(department);
-            return RedirectToAction(nameof(Index));
-        }
+        //    _departmentService.Update(department);
+        //    return RedirectToAction(nameof(Index));
+        //}
         public IActionResult Delete(int? Id)
         {
             var dept = _departmentService.GetBYId(Id);
