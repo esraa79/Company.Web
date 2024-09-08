@@ -128,7 +128,7 @@ namespace Company.Service.Services
         public IEnumerable<EmployeeDto> GetEmpoyeeByName(string empyeeName)
         {
             
-            var emp = _unitOfWork.EmployeeRepositry.GetEmpoyeeByName(empyeeName);
+            IEnumerable<Employee> emp  = _unitOfWork.EmployeeRepositry.GetEmpoyeeByName(empyeeName);
 
 
             //var mappedEmp = emp.Select(x => new EmployeeDto
