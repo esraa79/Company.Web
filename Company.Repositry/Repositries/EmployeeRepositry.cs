@@ -24,6 +24,8 @@ namespace Company.Repositry.Repositries
         }
 
         public IEnumerable<Employee> GetEmpoyeeByName(string empyeeName)
-        =>_context.Employees.Where(x=>x.Name.Trim().ToLower().Contains(empyeeName.Trim().ToLower())).ToList();
+        =>_context.Employees.Where(x=>x.Name.Trim().ToLower().Contains(empyeeName.Trim().ToLower())||
+       x.Email.Trim().ToLower().Contains(empyeeName.Trim().ToLower()) ||
+        x.Phone.Trim().ToLower().Contains(empyeeName.Trim().ToLower())).ToList();
     }
 }

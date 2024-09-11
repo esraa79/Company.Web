@@ -1,4 +1,7 @@
-﻿using Company.Data.Models;
+﻿using Company.Data.Enitity;
+using Company.Data.Models;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Query.Internal;
 using System;
@@ -10,7 +13,7 @@ using System.Threading.Tasks;
 
 namespace Company.Data.Context
 {
-    public class CompanyDbContext:DbContext
+    public class CompanyDbContext:IdentityDbContext<ApplicationUser>
     {
         public CompanyDbContext(DbContextOptions<CompanyDbContext> options):base(options)
         {

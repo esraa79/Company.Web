@@ -14,17 +14,17 @@ namespace Company.Web.Controllers
         private readonly IEmployeeService _employeeService;
 
         private readonly IDepartmentService _departmentService;
-        private readonly EmployeeDto _employeeDto;
+     
       
 
-        public EmployeeController(IEmployeeService employeeService,IDepartmentService departmentService,EmployeeDto employeeDto)
+        public EmployeeController(IEmployeeService employeeService,IDepartmentService departmentService)
         {
            _employeeService = employeeService;
             _departmentService = departmentService;
-           _employeeDto = employeeDto;
+
             
         }
-        [HttpGet]
+       
         public IActionResult Index(string searchInp)
         {
             IEnumerable<EmployeeDto> emp;
@@ -49,13 +49,13 @@ namespace Company.Web.Controllers
         }
 
         [HttpPost]
-        public IActionResult Create(Employee employee)
+        public IActionResult Create(EmployeeDto employee)
         {
             try
             {
                 if (ModelState.IsValid)
                 {
-                    _employeeService.Add(_employeeDto);
+                    _employeeService.Add(employee);
 
                     return RedirectToAction(nameof(Index));
                 }
