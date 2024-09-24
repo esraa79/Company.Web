@@ -1,0 +1,35 @@
+﻿@using Company.Data.Enitity
+@model ApplicationUser
+
+<h1> User Details</h1>
+<br/>
+<br/>
+
+<div class="row">
+    <div class="col-12">
+        <div class="form-group">
+            <label class="col-form-label" asp-for="@Model.UserName">User Name</label>
+            <input type="text" asp-for="@Model.UserName" class="form-control" readonly />
+
+
+            <label class="col-form-label" asp-for="@Model.Email">Email</label>
+            <input type="text" asp-for="@Model.Email" class="form-control" readonly />
+            @* <span asp-validation-for="Code" class="text-danger"></span> *@
+
+
+
+        </div>
+        <div>
+            <a asp-action="Update" class="btn btn-success" asp-route-id="@Model.Id">Update</a>
+            <a asp-action="Index" class="btn btn-light">Back to List</a>
+
+
+        </div>
+
+    </div>
+    </div>
+
+    
+
+
+

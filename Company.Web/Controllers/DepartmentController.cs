@@ -4,10 +4,12 @@ using Company.Repositry.Repositries;
 using Company.Service.Interfaces.Department;
 using Company.Service.Interfaces.Department.DTO;
 using Company.Service.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Company.Web.Controllers
 {
+    [Authorize]
     public class DepartmentController : Controller
     {
         private readonly IDepartmentService _departmentService;
@@ -69,15 +71,16 @@ namespace Company.Web.Controllers
          
             return Details(Id,"Update");
         }
-        [HttpPost]
-        //public IActionResult Update(int? Id,Department epartment)
-        //{
-        //    if(department.id != Id.Value)
-        //        return RedirectToAction("NotFoundPage", null, "Home");
 
-        //    _departmentService.Update(department);
-        //    return RedirectToAction(nameof(Index));
-        //}
+        [HttpPost]
+        public IActionResult Update(int? Id, DepartmentDto department)
+        {
+            if (department.Id != Id.Value)
+                return RedirectToAction("NotFoundPage", null, "Home");
+
+            _departmentService.Update(department);
+            return RedirectToAction(nameof(Index));
+        }
         public IActionResult Delete(int? Id)
         {
             var dept = _departmentService.GetBYId(Id);

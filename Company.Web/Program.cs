@@ -12,6 +12,7 @@ using Company.Service.Interfaces.Employee.DTO;
 using Company.Service.Interfaces.Department.DTO;
 using Microsoft.AspNetCore.Identity;
 using Company.Data.Enitity;
+using Microsoft.AspNetCore.Authentication.Cookies;
 
 namespace Company.Web
 {
@@ -60,13 +61,19 @@ namespace Company.Web
                 options.LoginPath = "/Account/Login";
                 options.LogoutPath = "/Account/Logout";
                 options.AccessDeniedPath = "/Account/AccessDenied";
+
                 options.Cookie.Name = "Anyname";
                 options.Cookie.SecurePolicy = CookieSecurePolicy.Always;
                 options.Cookie.SameSite = SameSiteMode.Strict;
             });
-            
 
 
+            builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+                .AddCookie(CookieAuthenticationDefaults.AuthenticationScheme, options =>
+                {
+                    options.LoginPath = new PathString("/Account/Login");
+                    options.AccessDeniedPath = new PathString("Home/Error");
+                });
 
             var app = builder.Build();
 
@@ -87,7 +94,7 @@ namespace Company.Web
             app.UseAuthentication();
             app.MapControllerRoute(
                 name: "default",
-                pattern: "{controller=Account}/{action=SignUp}");
+                pattern: "{controller=Account}/{action=Login}");
 
             app.Run();
         }

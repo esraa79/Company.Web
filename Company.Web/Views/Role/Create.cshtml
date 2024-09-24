@@ -1,0 +1,24 @@
+﻿@model RoleUpdateViewModel
+
+<h1>Create New Role</h1>
+<br />
+<br />
+
+<div class="row">
+
+
+    <div class="col-6">
+      <form asp-action="Create" asp-controller="Role">
+        <partial name="PartialViews/CreateEditPartialView" model="@Model" />
+        <input type="submit" value="Create" class="btn btn-primary" />
+        <a asp-action="Index" class="btn btn-light">Back to List</a>
+
+      </form>
+
+    </div>
+    <div>
+       
+
+    </div>
+
+
